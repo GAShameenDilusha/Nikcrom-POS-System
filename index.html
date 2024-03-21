@@ -177,6 +177,118 @@
 </div>
 
 
+<br><br><br><br><br>
+
+<!--Item Section-->
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">Item</div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Input Name/NIC/ID Here">
+                        <div class="input-group-append">
+                            <button class="btn btn-success">Search</button>
+                            <button class="btn btn-success dropdown-toggle" data-toggle="dropdown"></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Name</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group mb-3">
+                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-primary">Details</button>
+                        <button class="btn btn-warning">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="btn-group float-right mb-3">
+                <button class="btn btn-success" data-toggle="modal" data-target="#newCustomerModal">New Customer</button>
+                <button class="btn btn-primary">View All Customers</button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="newItemModal" tabindex="-1" role="dialog" aria-labelledby="newCustomerModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success text-white">
+                            <h5 class="modal-title" id="newItemModalLabel">New Customer</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="customerId">Customer ID:</label>
+                                    <input type="text" class="form-control" id="itemId">
+                                </div>
+                                <div class="form-group">
+                                    <label for="customerName">Customer Name:</label>
+                                    <input type="text" class="form-control" id="itemName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="customerAddress">Customer Address:</label>
+                                    <input type="text" class="form-control" id="itemAddress">
+                                </div>
+                                <div class="form-group">
+                                    <label for="customerSalary">Customer Salary:</label>
+                                    <input type="text" class="form-control" id="itemSalary">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning">Renew</button>
+                            <button type="button" class="btn btn-success">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="bg-success text-white">
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Age</th>
+                        <th>ID</th>
+                        <th>Salary</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Malitha</td>
+                        <td>Panadura</td>
+                        <td>C003</td>
+                        <td>10000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Singala</td>
+                        <td>Galle</td>
+                        <td>C004</td>
+                        <td>24000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Imathira</td>
+                        <td>Panadura</td>
+                        <td>C005</td>
+                        <td>9,000.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br><br><br><br>
 
 
 
