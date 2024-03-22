@@ -30,3 +30,20 @@ body {
 .table-responsive {
     overflow-x: auto;
 }
+
+
+.sidebar-left {
+    width: 50px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+}
+
+.sidebar-right {
+    width: 50px;
+    background-color: #f8f9fa;
+    border-left: 1px solid #dee2e6;
+}
+
+.table-container {
+    flex-grow: 1;
+}

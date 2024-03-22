@@ -103,45 +103,7 @@
         <div class="col-md-8">
             <div class="btn-group float-right mb-3">
                 <button class="btn btn-success" data-toggle="modal" data-target="#newCustomerModal">New Customer</button>
-                <button class="btn btn-primary">View All Customers</button>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="newCustomerModal" tabindex="-1" role="dialog" aria-labelledby="newCustomerModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-success text-white">
-                            <h5 class="modal-title" id="newCustomerModalLabel">New Customer</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="customerId">Customer ID:</label>
-                                    <input type="text" class="form-control" id="customerId">
-                                </div>
-                                <div class="form-group">
-                                    <label for="customerName">Customer Name:</label>
-                                    <input type="text" class="form-control" id="customerName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="customerAddress">Customer Address:</label>
-                                    <input type="text" class="form-control" id="customerAddress">
-                                </div>
-                                <div class="form-group">
-                                    <label for="customerSalary">Customer Salary:</label>
-                                    <input type="text" class="form-control" id="customerSalary">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-warning">Renew</button>
-                            <button type="button" class="btn btn-success">Save</button>
-                        </div>
-                    </div>
-                </div>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#viewAllCustomersModal">View All Customers</button>
             </div>
         </div>
     </div>
@@ -151,8 +113,99 @@
     <div class="row mt-3">
         <div class="col-md-12">
             <div class="table-responsive">
+                <div class="d-flex">
+                    <div class="sidebar-left"></div>
+                    <div class="table-container">
+                        <table class="table table-striped" id="customerTable">
+                            <thead class="bg-info text-white">
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Age</th>
+                                <th>ID</th>
+                                <th>Salary</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Malitha</td>
+                                <td>Panadura</td>
+                                <td>C003</td>
+                                <td>10000.00</td>
+                            </tr>
+                            <tr>
+                                <td>Singala</td>
+                                <td>Galle</td>
+                                <td>C004</td>
+                                <td>24000.00</td>
+                            </tr>
+                            <tr>
+                                <td>Imathira</td>
+                                <td>Panadura</td>
+                                <td>C005</td>
+                                <td>9,000.00</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="sidebar-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for New Customer -->
+<div class="modal fade" id="newCustomerModal" tabindex="-1" role="dialog" aria-labelledby="newCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="newCustomerModalLabel">New Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="customerId">Customer ID:</label>
+                        <input type="text" class="form-control" id="customerId">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerName">Customer Name:</label>
+                        <input type="text" class="form-control" id="customerName">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerAddress">Customer Address:</label>
+                        <input type="text" class="form-control" id="customerAddress">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerSalary">Customer Salary:</label>
+                        <input type="text" class="form-control" id="customerSalary">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning">Renew</button>
+                <button type="button" class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for View All Customers -->
+<div class="modal fade" id="viewAllCustomersModal" tabindex="-1" role="dialog" aria-labelledby="viewAllCustomersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="viewAllCustomersModalLabel">All Customers</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
                 <table class="table table-striped">
-                    <thead class="bg-success text-white">
+                    <thead class="bg-info text-white">
                     <tr>
                         <th>Customer Name</th>
                         <th>Age</th>
@@ -182,9 +235,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 <br><br><br><br><br>
@@ -266,7 +323,7 @@
         <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table table-striped">
-                    <thead class="bg-success text-white">
+                    <thead class="bg-info text-white">
                     <tr>
                         <th>Customer Name</th>
                         <th>Age</th>
@@ -411,7 +468,7 @@
             <div class="card">
                 <div class="card-body">
                     <table class="table table-striped">
-                        <thead class="bg-success text-white">
+                        <thead class="bg-info text-white">
                         <tr>
                             <th>Item Code</th>
                             <th>Item Name</th>
@@ -459,8 +516,8 @@
             </div>
         </div>
         <div class="col-md-6">
-            <br><br>
-            <button class="btn btn-success btn-lg btn-block">Purchase</button>
+            <br><br><br><br>
+            <button class="btn btn-warning btn-lg btn-block">Purchase</button>
         </div>
     </div>
 </div>
@@ -484,6 +541,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+<script>
+    $(document).ready(function() {
+        $('#viewAllCustomersModal').on('shown.bs.modal', function() {
+            var modalBody = $(this).find('.modal-body');
+            var table = modalBody.find('table').clone();
+            modalBody.html(table);
+        });
+    });
+</script>
 
 </body>
 </html>
