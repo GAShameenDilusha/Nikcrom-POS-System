@@ -12,7 +12,9 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: auto;
-    margin-left: 50px;
+    margin-left: 700px;
+    margin-right: 90px;
+    margin-top: 90px;
 }
 .login-image {
     width: 50%;
@@ -20,6 +22,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .login-image img {
     max-width: 100%;
     height: auto;
@@ -32,9 +35,14 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.login{
+.login {
     position: absolute;
     top: 45px;
+}
+
+.newimg{
+    position: absolute;
+    top: 90px;
 }
 
 
