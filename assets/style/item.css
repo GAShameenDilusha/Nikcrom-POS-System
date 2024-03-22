@@ -30,3 +30,18 @@ body {
 .table-responsive {
     overflow-x: auto;
 }
+
+
+.Item-content{
+    margin-left: 600px;
+}
+
+.Item-content h1{
+    color: black;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.Item-ridebutton{
+    margin-right: 50px;
+}

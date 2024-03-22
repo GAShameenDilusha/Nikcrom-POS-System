@@ -23,3 +23,16 @@ body {
 .Sh4{
     color: red;
 }
+
+
+.Order-content{
+    margin-left: 650px;
+}
+
+
+.Order-content h1{
+    color: black;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.2;
+}
