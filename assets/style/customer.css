@@ -51,6 +51,7 @@ body {
 
 .customer-content{
     margin-left: 500px;
+    margin-top: 30px;
 }
 
 .customer-content h1{
@@ -62,4 +63,26 @@ body {
 
 .customer-ridebutton{
     margin-right: 50px;
+}
+
+
+
+
+
+/* Customize the scrollbar appearance */
+tbody::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+tbody::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of the scrollbar track */
+}
+
+tbody::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+}
+
+tbody::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color of the scrollbar thumb on hover */
 }
