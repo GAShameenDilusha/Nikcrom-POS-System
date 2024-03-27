@@ -95,7 +95,65 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Input Item Name/Code Here">
                         <div class="input-group-append">
-                            <button class="btn btn-success">Search</button>
+                            <button id="searchBtn" class="btn btn-success">Search</button>
+
+                            <!-- Item Modal -->
+                            <div class="modal fade" id="newItemModal1" tabindex="-1" role="dialog" aria-labelledby="newItemModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-success text-white">
+                                            <h5 class="modal-title" id="newItemModalLabel1">New Item</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="itemId">Item Code:</label>
+                                                    <input type="text" class="form-control" id="itemId1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="itemName">Item Name:</label>
+                                                    <input type="text" class="form-control" id="itemName">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="itemPrice">Item Price:</label>
+                                                    <input type="text" class="form-control" id="itemPrice">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="itemQuantity">Item Quantity:</label>
+                                                    <input type="text" class="form-control" id="itemQuantity">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Clear</button>
+                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            <button type="button" class="btn btn-primary">Update</button>
+                                            <button type="button" class="btn btn-success">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                document.getElementById("searchBtn").addEventListener("click", function() {
+                                    // Set values to text fields
+                                    document.getElementById("itemId1").value = "P001";
+                                    document.getElementById("itemName").value = "Cake";
+                                    document.getElementById("itemPrice").value = "100.00";
+                                    document.getElementById("itemQuantity").value = "2";
+
+                                    // Show the modal
+                                    $('#newItemModal1').modal('show');
+                                });
+                            </script>
+
+
+
+
+
                             <button class="btn btn-success dropdown-toggle" data-toggle="dropdown"></button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Code</a>
