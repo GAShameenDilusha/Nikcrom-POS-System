@@ -75,21 +75,26 @@ body {
 }
 
 .img1{
-    margin-left: 20px;         /*I*/
+    margin-left: 20px;
+    margin-top: 23px;            /*I*/
 }
 
 
 .img2{
-    margin-left: 20px ;          /*I*/
+    margin-left: 20px;
+    margin-top: 23px;           /*I*/
 }
 
 .img3{
-    margin-left: 20px ;          /*I*/
+    margin-left: 20px;  /*I*/
+    margin-top: 23px;
 }
 
 .uresha{
     color: green;
     margin-right: 20px;
 }
+
+
 
 
