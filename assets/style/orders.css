@@ -43,3 +43,57 @@ body {
     font-weight: 700;
     line-height: 1.2;
 }
+
+
+.card-sm {
+    max-height: 430px; /* Adjust the value as needed */
+}
+
+.add-button{
+    position: relative;
+    bottom: 30px;
+}
+
+.invoice-de{                        /*I*/
+    position: relative;
+    left: -160px;
+    bottom: 20px;
+}
+
+.item-select{                      /*I*/
+    position: relative;
+    right: 250px;
+    bottom: 20px;
+}
+
+.center-card{                      /*I*/
+    position: relative;
+    bottom: 670px;
+    left: 800px;
+}
+
+.purchase{                        /*I*/
+    position: relative;
+    top: 10px;
+}
+
+.card-lg {
+    height: 400px;
+    width: 350px;
+}
+
+.o-table{                          /*I*/
+    position: relative;
+    bottom: 100px;
+}
+
+
+.card-table{                           /*I*/
+    position: relative;
+    width: 1400px;
+    top: -50px;
+    right: 160px;
+}
+
+
+
