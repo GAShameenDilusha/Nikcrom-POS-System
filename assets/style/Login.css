@@ -1,5 +1,4 @@
 body {
- /*   background-color: #f8f9fa;*/
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -52,7 +51,7 @@ body {
 
 .close-button {
     position: absolute;
-    right: 160px; /* Adjust this value to your preference */
-    top: 370px; /* Adjust this value to your preference */
+    right: 160px;
+    top: 370px;
 }
 

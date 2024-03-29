@@ -5,13 +5,9 @@ body {
 .card {
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   /* margin-bottom: 20px;*/
-    width: 450px; /* Adjust the width as needed */
-    max-width: 100%; /* Ensure the card doesn't exceed the container width */
-    /*margin-left: 10px;*/
+    width: 450px;
+    max-width: 100%;
 }
-
-
 
 .card-header {
     font-weight: bold;
