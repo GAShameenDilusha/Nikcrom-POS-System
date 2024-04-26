@@ -71,6 +71,7 @@ body {
 .purchase{                        /*I*/
     position: relative;
     top: 10px;
+
 }
 
 .card-lg {
@@ -91,5 +92,9 @@ body {
     right: 160px;
 }
 
-
+.view-history{                         /*I*/
+    position: relative;
+    top: 15px;
+    left: 100px;
+}
 
