@@ -206,6 +206,9 @@ function searchCustomers() {
     renderCustomerTable(filteredCustomers);
 }
 
+
+
+
 // Event listeners
 $('#newCustomerModal .btn-success').on('click', saveCustomer);
 $('#newCustomerModal .btn-primary').on('click', updateCustomer);
@@ -218,56 +221,67 @@ $('#searchBtn').on('click', searchCustomers);
 
 
 
-/*/////////////////////////////////////////////*/
-    let items = []; // Array to store item data
-    let selectedItemIndex = -1; // Index of the selected item for update/delete operations
 
-    // Function to save a new item
-    function saveItem() {
+
+
+
+
+
+
+
+
+
+
+/*/////////////////////////////////////////////*/
+let items = []; // Array to store item data
+let selectedItemIndex = -1; // Index of the selected item for update/delete operations
+
+// Function to save a new item
+function saveItem() {
     const itemId = $('#itemId').val();
     const itemName = $('#itemName1').val();
     const itemPrice = $('#itemAddress').val();
     const itemQuantity = $('#itemSalary').val();
 
     const newItem = {
-    id: itemId,
-    name: itemName,
-    price: itemPrice,
-    quantity: itemQuantity
-};
+        id: itemId,
+        name: itemName,
+        price: itemPrice,
+        quantity: itemQuantity
+    };
 
     items.push(newItem);
     clearItemForm();
     renderItemTable();
 }
 
-    // Function to update an existing item
-    function updateItem() {
+// Function to update an existing item
+function updateItem() {
     const itemId = $('#itemId').val();
     const itemName = $('#itemName1').val();
     const itemPrice = $('#itemAddress').val();
     const itemQuantity = $('#itemSalary').val();
 
     items[selectedItemIndex] = {
-    id: itemId,
-    name: itemName,
-    price: itemPrice,
-    quantity: itemQuantity
-};
+        id: itemId,
+        name: itemName,
+        price: itemPrice,
+        quantity: itemQuantity
+    };
 
     clearItemForm();
     renderItemTable();
 }
 
-    // Function to delete an item
-    function deleteItem() {
+// Function to delete an item
+function deleteItem() {
     items.splice(selectedItemIndex, 1);
     clearItemForm();
     renderItemTable();
 }
 
-    // Function to clear the item form
-    function clearItemForm() {
+// Function to clear the item form
+function clearItemForm() {
     $('#itemId').val('');
     $('#itemName1').val('');
     $('#itemAddress').val('');
@@ -275,50 +289,115 @@ $('#searchBtn').on('click', searchCustomers);
     selectedItemIndex = -1;
 }
 
-    // Function to render the item table
-    function renderItemTable() {
+// Function to render the item table
+function renderItemTable() {
     const $tableBody = $('#itemTable tbody');
     $tableBody.empty();
 
     $.each(items, (index, item) => {
-    const $row = $('<tr>');
-    $row.append($('<td>').text(item.id));
-    $row.append($('<td>').text(item.name));
-    $row.append($('<td>').text(item.price));
-    $row.append($('<td>').text(item.quantity));
+        const $row = $('<tr>');
+        $row.append($('<td>').text(item.id));
+        $row.append($('<td>').text(item.name));
+        $row.append($('<td>').text(item.price));
+        $row.append($('<td>').text(item.quantity));
 
-    $row.on('click', () => {
-    selectedItemIndex = index;
-    populateItemForm(item);
-});
+        $row.on('click', () => {
+            selectedItemIndex = index;
+            populateItemForm(item);
+        });
 
-    $tableBody.append($row);
-});
+        $tableBody.append($row);
+    });
 }
 
-    // Function to populate the item form with data
-    function populateItemForm(item) {
+// Function to populate the item form with data
+function populateItemForm(item) {
     $('#itemId').val(item.id);
     $('#itemName1').val(item.name);
     $('#itemAddress').val(item.price);
     $('#itemSalary').val(item.quantity);
 }
 
-    // Function to search for items
-    function searchItems() {
+// Function to search for items
+function searchItems() {
     const searchInput = $('.form-control').val().toLowerCase();
     const filteredItems = items.filter(item =>
-    item.id.toLowerCase().includes(searchInput) ||
-    item.name.toLowerCase().includes(searchInput)
+        item.id.toLowerCase().includes(searchInput) ||
+        item.name.toLowerCase().includes(searchInput)
     );
 
     renderItemTable(filteredItems);
 }
 
+// Event listeners
+$('#newItemModal .btn-success').on('click', saveItem);
+$('#newItemModal .btn-primary').on('click', updateItem);
+$('#newItemModal .btn-danger').on('click', deleteItem);
+$('#newItemModal .btn-warning').on('click', clearItemForm);
+$('#searchBtn3').on('click', searchItems);
+
+
+
+
+/*/////////////////////////////////////////////////////*/
+    let orders = []; // Array to store order data
+
+    // Function to add an item to the order
+    function addItemToOrder() {
+    const itemCode = $('#itemCode').val();
+    const itemName = $('#itemName4').val();
+    const price = parseFloat($('#price').val());
+    const orderQuantity = parseInt($('#orderQuantity').val());
+    const total = price * orderQuantity;
+
+    const newItem = {
+    itemCode,
+    itemName,
+    price,
+    orderQuantity,
+    total
+};
+
+    orders.push(newItem);
+    renderOrderTable();
+    calculateTotals();
+}
+
+    // Function to render the order table
+    function renderOrderTable() {
+    const $tableBody = $('#ordersTable tbody');
+    $tableBody.empty();
+
+    $.each(orders, (index, order) => {
+    const $row = $('<tr>');
+    $row.append($('<td>').text(order.itemCode));
+    $row.append($('<td>').text(order.itemName));
+    $row.append($('<td>').text(order.price.toFixed(2)));
+    $row.append($('<td>').text(order.orderQuantity));
+    $row.append($('<td>').text(order.total.toFixed(2)));
+
+    $tableBody.append($row);
+});
+}
+
+    // Function to calculate totals
+    function calculateTotals() {
+    let subTotal = 0;
+    let total = 0;
+
+    $.each(orders, (index, order) => {
+    subTotal += order.total;
+});
+
+    const discount = parseFloat($('.input-group input[type="number"]').val()) / 100;
+    total = subTotal - (subTotal * discount);
+
+    $('.Th3').text(`Total : Rs.${total.toFixed(2)}`);
+    $('.Sh4').text(`SubTotal : Rs.${subTotal.toFixed(2)}`);
+}
+
     // Event listeners
-    $('#newItemModal .btn-success').on('click', saveItem);
-    $('#newItemModal .btn-primary').on('click', updateItem);
-    $('#newItemModal .btn-danger').on('click', deleteItem);
-    $('#newItemModal .btn-warning').on('click', clearItemForm);
-    $('#searchBtn3').on('click', searchItems);
+    $('.add-button').on('click', addItemToOrder);
+    $('.input-group input[type="number"]').on('input', calculateTotals);
+
 
