@@ -490,7 +490,295 @@
 
 
 <!--item view-->
+<section id="item-view-section">
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signUpModal3" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="signUpModalLabel3">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Sign Up Form -->
+                    <form>
+                        <div class="form-group">
+                            <label for="username">User Name</label>
+                            <input type="text" class="form-control" id="username4" placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email3" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password4" placeholder="Enter your password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <br><br>
+
+
+    <!--Item Section-->
+    <div class="Item-content">
+        <h1><i class="fa-solid fa-boxes-stacked fa-lg img2"
+               style="color: #000000;"></i>Item</h1>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">Item</div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Input Item Name/Code Here">
+                            <div class="input-group-append">
+                                <button id="searchBtn3" class="btn btn-success">Search</button>
+
+                                <!-- Item Modal -->
+                                <div class="modal fade" id="newItemModal1" tabindex="-1" role="dialog" aria-labelledby="newItemModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-success text-white">
+                                                <h5 class="modal-title" id="newItemModalLabel1">New Item</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="itemId">Item Code:</label>
+                                                        <input type="text" class="form-control" id="itemId1">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="itemName">Item Name:</label>
+                                                        <input type="text" class="form-control" id="itemName">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="itemPrice">Item Price:</label>
+                                                        <input type="text" class="form-control" id="itemPrice">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="itemQuantity">Item Quantity:</label>
+                                                        <input type="text" class="form-control" id="itemQuantity">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-warning" data-dismiss="modal">Clear</button>
+                                                <button type="button" class="btn btn-danger">Delete</button>
+                                                <button type="button" class="btn btn-primary">Update</button>
+                                                <button type="button" class="btn btn-success">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    document.getElementById("searchBtn").addEventListener("click", function() {
+                                        // Set values to text fields
+                                        document.getElementById("itemId1").value = "P001";
+                                        document.getElementById("itemName").value = "Cake";
+                                        document.getElementById("itemPrice").value = "100.00";
+                                        document.getElementById("itemQuantity").value = "2";
+
+                                        // Show the modal
+                                        $('#newItemModal1').modal('show');
+                                    });
+                                </script>
+
+
+
+
+
+                                <button class="btn btn-success dropdown-toggle" data-toggle="dropdown"></button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Code</a>
+                                    <a class="dropdown-item" href="#">Name</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group mb-3">
+                            <button class="btn btn-warning">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="btn-group float-right mb-3 Item-ridebutton">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#newItemModal">New Item</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#viewAllItemsModal">View All Items</button>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+
+        <!--table-->
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="table-responsive"style="height: 300px; overflow-y: scroll;">      <!--this line-->
+                    <div class="d-flex">
+                        <div class="sidebar-left"></div>
+                        <div class="table-container">
+                            <table class="table table-striped" id="itemTable">
+                                <thead class="bg-info text-white">
+                                <tr>
+                                    <th>Item Code</th>
+                                    <th>Item Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>P001</td>
+                                    <td>Cake</td>
+                                    <td>100.00</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>P002</td>
+                                    <td>Biscuts</td>
+                                    <td>1000.00</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>P003</td>
+                                    <td>bottel</td>
+                                    <td>500.00</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>P003</td>
+                                    <td>bottel</td>
+                                    <td>500.00</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>P003</td>
+                                    <td>bottel</td>
+                                    <td>500.00</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>P003</td>
+                                    <td>bottel</td>
+                                    <td>500.00</td>
+                                    <td>1</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="sidebar-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for New Customer -->
+    <div class="modal fade" id="newItemModal" tabindex="-1" role="dialog" aria-labelledby="newCustomerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="newItemModalLabel">New Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="itemId">Item Code:</label>
+                            <input type="text" class="form-control" id="itemId">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemName1">Item Name:</label>
+                            <input type="text" class="form-control" id="itemName1">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemAddress">Item Price:</label>
+                            <input type="text" class="form-control" id="itemAddress">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemSalary">Item Quamtity:</label>
+                            <input type="text" class="form-control" id="itemSalary">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Clear</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for View All Customers -->
+    <div class="modal fade" id="viewAllItemsModal" tabindex="-1" role="dialog" aria-labelledby="viewAllItemsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="viewAllItemsModalLabel">All Items</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead class="bg-info text-white">
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>P001</td>
+                            <td>Cake</td>
+                            <td>100.00</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>P002</td>
+                            <td>Biscuts</td>
+                            <td>1000.00</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>P003</td>
+                            <td>bottel</td>
+                            <td>500.00</td>
+                            <td>1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!--orders view-->
 
