@@ -45,3 +45,65 @@ $('#nav-orders').on('click', () => {
     $('#item-view-section').css({display: 'none'});
     $('#orders-view-section').css({display: 'block'});
 });
+
+
+
+$('#nav-logout').on('click', () => {
+    $('#login-view-section').css({display: 'block'});
+    $('#home-view-section').css({display: 'none'});
+    $('#customer-view-section').css({display: 'none'});
+    $('#item-view-section').css({display: 'none'});
+    $('#orders-view-section').css({display: 'none'});
+});
+
+
+$('#login-view-loginbutton').on('click', () => {
+    $('#login-view-section').css({display: 'none'});
+    $('#home-view-section').css({display: 'block'});
+    $('#customer-view-section').css({display: 'none'});
+    $('#item-view-section').css({display: 'none'});
+    $('#orders-view-section').css({display: 'none'});
+});
+
+$('#login-view-registerbutton').on('click', () => {
+    $('#login-view-section').css({display: 'none'});
+    $('#home-view-section').css({display: 'block'});
+    $('#customer-view-section').css({display: 'none'});
+    $('#item-view-section').css({display: 'none'});
+    $('#orders-view-section').css({display: 'none'});
+});
+
+$('#home-view-registerbutton').on('click', () => {
+    $('#login-view-section').css({display: 'none'});
+    $('#home-view-section').css({display: 'block'});
+    $('#customer-view-section').css({display: 'none'});
+    $('#item-view-section').css({display: 'none'});
+    $('#orders-view-section').css({display: 'none'});
+});
+
+
+$('#customer_btn').on('click', () => {
+    $('#login-view-section').css({display: 'none'});
+    $('#home-view-section').css({display: 'none'});
+    $('#customer-view-section').css({display: 'block'});
+    $('#item-view-section').css({display: 'none'});
+    $('#orders-view-section').css({display: 'none'});
+});
+
+
+$('#item_btn').on('click', () => {
+    $('#login-view-section').css({display: 'none'});
+    $('#home-view-section').css({display: 'none'});
+    $('#customer-view-section').css({display: 'none'});
+    $('#item-view-section').css({display: 'block'});
+    $('#orders-view-section').css({display: 'none'});
+});
+
+
+$('#order_btn').on('click', () => {
+    $('#login-view-section').css({display: 'none'});
+    $('#home-view-section').css({display: 'none'});
+    $('#customer-view-section').css({display: 'none'});
+    $('#item-view-section').css({display: 'none'});
+    $('#orders-view-section').css({display: 'block'});
+});
