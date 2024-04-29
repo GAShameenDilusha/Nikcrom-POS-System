@@ -110,55 +110,55 @@ $('#order_btn').on('click', () => {
 
 /*//////////////////////////////////////////////*/
 
-    let customers = []; // Array to store customer data
-    let selectedCustomerIndex = -1; // Index of the selected customer for update/delete operations
+let customers = []; // Array to store customer data
+let selectedCustomerIndex = -1; // Index of the selected customer for update/delete operations
 
-    // Function to save a new customer
-    function saveCustomer() {
+// Function to save a new customer
+function saveCustomer() {
     const customerId = $('#customerId').val();
     const customerName = $('#customerName').val();
     const customerAddress = $('#customerAddress').val();
     const customerSalary = $('#customerSalary').val();
 
     const newCustomer = {
-    id: customerId,
-    name: customerName,
-    address: customerAddress,
-    salary: customerSalary
-};
+        id: customerId,
+        name: customerName,
+        address: customerAddress,
+        salary: customerSalary
+    };
 
     customers.push(newCustomer);
     clearCustomerForm();
     renderCustomerTable();
 }
 
-    // Function to update an existing customer
-    function updateCustomer() {
+// Function to update an existing customer
+function updateCustomer() {
     const customerId = $('#customerId').val();
     const customerName = $('#customerName').val();
     const customerAddress = $('#customerAddress').val();
     const customerSalary = $('#customerSalary').val();
 
     customers[selectedCustomerIndex] = {
-    id: customerId,
-    name: customerName,
-    address: customerAddress,
-    salary: customerSalary
-};
+        id: customerId,
+        name: customerName,
+        address: customerAddress,
+        salary: customerSalary
+    };
 
     clearCustomerForm();
     renderCustomerTable();
 }
 
-    // Function to delete a customer
-    function deleteCustomer() {
+// Function to delete a customer
+function deleteCustomer() {
     customers.splice(selectedCustomerIndex, 1);
     clearCustomerForm();
     renderCustomerTable();
 }
 
-    // Function to clear the customer form
-    function clearCustomerForm() {
+// Function to clear the customer form
+function clearCustomerForm() {
     $('#customerId').val('');
     $('#customerName').val('');
     $('#customerAddress').val('');
@@ -166,49 +166,159 @@ $('#order_btn').on('click', () => {
     selectedCustomerIndex = -1;
 }
 
-    // Function to render the customer table
-    function renderCustomerTable() {
+// Function to render the customer table
+function renderCustomerTable() {
     const $tableBody = $('#customerTable tbody');
     $tableBody.empty();
 
     $.each(customers, (index, customer) => {
-    const $row = $('<tr>');
-    $row.append($('<td>').text(customer.id));
-    $row.append($('<td>').text(customer.name));
-    $row.append($('<td>').text(customer.address));
-    $row.append($('<td>').text(customer.salary));
+        const $row = $('<tr>');
+        $row.append($('<td>').text(customer.id));
+        $row.append($('<td>').text(customer.name));
+        $row.append($('<td>').text(customer.address));
+        $row.append($('<td>').text(customer.salary));
 
-    $row.on('click', () => {
-    selectedCustomerIndex = index;
-    populateCustomerForm(customer);
-});
+        $row.on('click', () => {
+            selectedCustomerIndex = index;
+            populateCustomerForm(customer);
+        });
 
-    $tableBody.append($row);
-});
+        $tableBody.append($row);
+    });
 }
 
-    // Function to populate the customer form with data
-    function populateCustomerForm(customer) {
+// Function to populate the customer form with data
+function populateCustomerForm(customer) {
     $('#customerId').val(customer.id);
     $('#customerName').val(customer.name);
     $('#customerAddress').val(customer.address);
     $('#customerSalary').val(customer.salary);
 }
 
-    // Function to search for customers
-    function searchCustomers() {
+// Function to search for customers
+function searchCustomers() {
     const searchInput = $('.form-control').val().toLowerCase();
     const filteredCustomers = customers.filter(customer =>
-    customer.id.toLowerCase().includes(searchInput) ||
-    customer.name.toLowerCase().includes(searchInput)
+        customer.id.toLowerCase().includes(searchInput) ||
+        customer.name.toLowerCase().includes(searchInput)
     );
 
     renderCustomerTable(filteredCustomers);
 }
 
+// Event listeners
+$('#newCustomerModal .btn-success').on('click', saveCustomer);
+$('#newCustomerModal .btn-primary').on('click', updateCustomer);
+$('#newCustomerModal .btn-danger').on('click', deleteCustomer);
+$('#newCustomerModal .btn-warning').on('click', clearCustomerForm);
+$('#searchBtn').on('click', searchCustomers);
+
+
+
+
+
+
+/*/////////////////////////////////////////////*/
+    let items = []; // Array to store item data
+    let selectedItemIndex = -1; // Index of the selected item for update/delete operations
+
+    // Function to save a new item
+    function saveItem() {
+    const itemId = $('#itemId').val();
+    const itemName = $('#itemName1').val();
+    const itemPrice = $('#itemAddress').val();
+    const itemQuantity = $('#itemSalary').val();
+
+    const newItem = {
+    id: itemId,
+    name: itemName,
+    price: itemPrice,
+    quantity: itemQuantity
+};
+
+    items.push(newItem);
+    clearItemForm();
+    renderItemTable();
+}
+
+    // Function to update an existing item
+    function updateItem() {
+    const itemId = $('#itemId').val();
+    const itemName = $('#itemName1').val();
+    const itemPrice = $('#itemAddress').val();
+    const itemQuantity = $('#itemSalary').val();
+
+    items[selectedItemIndex] = {
+    id: itemId,
+    name: itemName,
+    price: itemPrice,
+    quantity: itemQuantity
+};
+
+    clearItemForm();
+    renderItemTable();
+}
+
+    // Function to delete an item
+    function deleteItem() {
+    items.splice(selectedItemIndex, 1);
+    clearItemForm();
+    renderItemTable();
+}
+
+    // Function to clear the item form
+    function clearItemForm() {
+    $('#itemId').val('');
+    $('#itemName1').val('');
+    $('#itemAddress').val('');
+    $('#itemSalary').val('');
+    selectedItemIndex = -1;
+}
+
+    // Function to render the item table
+    function renderItemTable() {
+    const $tableBody = $('#itemTable tbody');
+    $tableBody.empty();
+
+    $.each(items, (index, item) => {
+    const $row = $('<tr>');
+    $row.append($('<td>').text(item.id));
+    $row.append($('<td>').text(item.name));
+    $row.append($('<td>').text(item.price));
+    $row.append($('<td>').text(item.quantity));
+
+    $row.on('click', () => {
+    selectedItemIndex = index;
+    populateItemForm(item);
+});
+
+    $tableBody.append($row);
+});
+}
+
+    // Function to populate the item form with data
+    function populateItemForm(item) {
+    $('#itemId').val(item.id);
+    $('#itemName1').val(item.name);
+    $('#itemAddress').val(item.price);
+    $('#itemSalary').val(item.quantity);
+}
+
+    // Function to search for items
+    function searchItems() {
+    const searchInput = $('.form-control').val().toLowerCase();
+    const filteredItems = items.filter(item =>
+    item.id.toLowerCase().includes(searchInput) ||
+    item.name.toLowerCase().includes(searchInput)
+    );
+
+    renderItemTable(filteredItems);
+}
+
     // Event listeners
-    $('#newCustomerModal .btn-success').on('click', saveCustomer);
-    $('#newCustomerModal .btn-primary').on('click', updateCustomer);
-    $('#newCustomerModal .btn-danger').on('click', deleteCustomer);
-    $('#newCustomerModal .btn-warning').on('click', clearCustomerForm);
-    $('#searchBtn').on('click', searchCustomers);
+    $('#newItemModal .btn-success').on('click', saveItem);
+    $('#newItemModal .btn-primary').on('click', updateItem);
+    $('#newItemModal .btn-danger').on('click', deleteItem);
+    $('#newItemModal .btn-warning').on('click', clearItemForm);
+    $('#searchBtn3').on('click', searchItems);
+
