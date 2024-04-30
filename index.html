@@ -462,8 +462,8 @@
                             <th>Contact</th>
                         </tr>
                         </thead>
-                      <!--  <tbody>
-                        <tr>
+                        <tbody id="viewAllCustomersTableBody">
+                      <!--  <tr>
                             <td>C001</td>
                             <td>Nimal</td>
                             <td>Negombo</td>
@@ -480,8 +480,8 @@
                             <td>Kamal</td>
                             <td>Panadura</td>
                             <td>0775432811</td>
-                        </tr>
-                        </tbody>-->
+                        </tr>-->
+                        </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -754,7 +754,7 @@
                             <th>Quantity</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="viewAllItemsTableBody">
                        <!-- <tr>
                             <td>P001</td>
                             <td>Cake</td>
@@ -1012,7 +1012,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h5 class="mt-2">Balance: 4055</h5>
+                                <h5 class="mt-2">Balance:<label>4055</label></h5>
                                 <button class="btn btn-warning btn-lg btn-block purchase">Purchase</button>
                                 <button type="button" class="btn btn-primary btn-sm view-history" data-toggle="modal" data-target="#viewAllHistoryModal">
                                     View All History
@@ -1074,14 +1074,14 @@
         const tableBody = document.querySelector('#viewAllHistoryModal tbody');
 
         // Your data array
-        const data = [
+      /*  const data = [
             { customerId: 'C001', itemCode: 'P001', itemName: 'Cake', orderId: 'D001', price: 525.00, orderQuantity: 2, date: '07/06/2020' },
             { customerId: 'C002', itemCode: 'P002', itemName: 'Keetisamba', orderId: 'D002', price: 1050.00, orderQuantity: 2, date: '07/06/2021' },
             { customerId: 'C003', itemCode: 'P003', itemName: 'banana', orderId: 'D003', price: 100.00, orderQuantity: 5, date: '07/06/2021' },
             { customerId: 'C004', itemCode: 'P004', itemName: 'ice cream', orderId: 'D004', price: 500.00, orderQuantity: 4, date: '07/06/2021' },
             { customerId: 'C005', itemCode: 'P005', itemName: 'biscuits', orderId: 'D005', price: 200.00, orderQuantity: 1, date: '07/06/2021' },
             // Add more data objects as needed
-        ];
+        ];*/
 
         // Loop through the data and create table rows
         data.forEach(item => {

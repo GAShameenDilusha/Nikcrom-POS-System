@@ -108,7 +108,8 @@ $('#order_btn').on('click', () => {
 });
 
 
-/*//////////////////////////////////////////////*/
+//////////////////////////////////////////////
+
 
 let customers = []; // Array to store customer data
 let selectedCustomerIndex = -1; // Index of the selected customer for update/delete operations
@@ -129,7 +130,7 @@ function saveCustomer() {
 
     customers.push(newCustomer);
     clearCustomerForm();
-    renderCustomerTable();
+    renderCustomerTables();
 }
 
 // Function to update an existing customer
@@ -147,14 +148,14 @@ function updateCustomer() {
     };
 
     clearCustomerForm();
-    renderCustomerTable();
+    renderCustomerTables();
 }
 
 // Function to delete a customer
 function deleteCustomer() {
     customers.splice(selectedCustomerIndex, 1);
     clearCustomerForm();
-    renderCustomerTable();
+    renderCustomerTables();
 }
 
 // Function to clear the customer form
@@ -166,10 +167,13 @@ function clearCustomerForm() {
     selectedCustomerIndex = -1;
 }
 
-// Function to render the customer table
-function renderCustomerTable() {
-    const $tableBody = $('#customerTable tbody');
-    $tableBody.empty();
+// Function to render both customer tables
+function renderCustomerTables() {
+    const $customerTableBody = $('#customerTable tbody');
+    const $viewAllCustomersTableBody = $('#viewAllCustomersTableBody');
+
+    $customerTableBody.empty();
+    $viewAllCustomersTableBody.empty();
 
     $.each(customers, (index, customer) => {
         const $row = $('<tr>');
@@ -183,7 +187,8 @@ function renderCustomerTable() {
             populateCustomerForm(customer);
         });
 
-        $tableBody.append($row);
+        $customerTableBody.append($row.clone(true));
+        $viewAllCustomersTableBody.append($row);
     });
 }
 
@@ -203,11 +208,33 @@ function searchCustomers() {
         customer.name.toLowerCase().includes(searchInput)
     );
 
-    renderCustomerTable(filteredCustomers);
+    renderCustomerTables(filteredCustomers);
 }
 
+// Function to render customer tables with filtered data
+function renderCustomerTables(filteredData = customers) {
+    const $customerTableBody = $('#customerTable tbody');
+    const $viewAllCustomersTableBody = $('#viewAllCustomersTableBody');
 
+    $customerTableBody.empty();
+    $viewAllCustomersTableBody.empty();
 
+    $.each(filteredData, (index, customer) => {
+        const $row = $('<tr>');
+        $row.append($('<td>').text(customer.id));
+        $row.append($('<td>').text(customer.name));
+        $row.append($('<td>').text(customer.address));
+        $row.append($('<td>').text(customer.salary));
+
+        $row.on('click', () => {
+            selectedCustomerIndex = index;
+            populateCustomerForm(customer);
+        });
+
+        $customerTableBody.append($row.clone(true));
+        $viewAllCustomersTableBody.append($row);
+    });
+}
 
 // Event listeners
 $('#newCustomerModal .btn-success').on('click', saveCustomer);
@@ -216,14 +243,15 @@ $('#newCustomerModal .btn-danger').on('click', deleteCustomer);
 $('#newCustomerModal .btn-warning').on('click', clearCustomerForm);
 $('#searchBtn').on('click', searchCustomers);
 
+// Render both customer tables on page load
+$(document).ready(function () {
+    renderCustomerTables();
+});
 
-
-
-
-
-
-
-
+// Render both customer tables when the "View All Customers" modal is shown
+$('#viewAllCustomersModal').on('shown.bs.modal', function () {
+    renderCustomerTables();
+});
 
 
 
@@ -233,6 +261,7 @@ $('#searchBtn').on('click', searchCustomers);
 
 
 /*/////////////////////////////////////////////*/
+
 let items = []; // Array to store item data
 let selectedItemIndex = -1; // Index of the selected item for update/delete operations
 
@@ -252,7 +281,7 @@ function saveItem() {
 
     items.push(newItem);
     clearItemForm();
-    renderItemTable();
+    renderItemTables();
 }
 
 // Function to update an existing item
@@ -270,14 +299,14 @@ function updateItem() {
     };
 
     clearItemForm();
-    renderItemTable();
+    renderItemTables();
 }
 
 // Function to delete an item
 function deleteItem() {
     items.splice(selectedItemIndex, 1);
     clearItemForm();
-    renderItemTable();
+    renderItemTables();
 }
 
 // Function to clear the item form
@@ -326,7 +355,32 @@ function searchItems() {
         item.name.toLowerCase().includes(searchInput)
     );
 
-    renderItemTable(filteredItems);
+    renderItemTables(filteredItems);
+}
+
+// Function to render both item tables
+function renderItemTables(filteredData = items) {
+    const $itemTableBody = $('#itemTable tbody');
+    const $viewAllItemsTableBody = $('#viewAllItemsTableBody tbody');
+
+    $itemTableBody.empty();
+    $viewAllItemsTableBody.empty();
+
+    $.each(filteredData, (index, item) => {
+        const $row = $('<tr>');
+        $row.append($('<td>').text(item.id));
+        $row.append($('<td>').text(item.name));
+        $row.append($('<td>').text(item.price));
+        $row.append($('<td>').text(item.quantity));
+
+        $row.on('click', () => {
+            selectedItemIndex = index;
+            populateItemForm(item);
+        });
+
+        $itemTableBody.append($row.clone(true));
+        $viewAllItemsTableBody.append($row);
+    });
 }
 
 // Event listeners
@@ -334,7 +388,20 @@ $('#newItemModal .btn-success').on('click', saveItem);
 $('#newItemModal .btn-primary').on('click', updateItem);
 $('#newItemModal .btn-danger').on('click', deleteItem);
 $('#newItemModal .btn-warning').on('click', clearItemForm);
-$('#searchBtn3').on('click', searchItems);
+$('#searchItemBtn').on('click', searchItems);
+
+// Render both item tables on page load
+$(document).ready(function () {
+    renderItemTables();
+});
+
+// Render both item tables when the "View All Items" modal is shown
+$('#viewAllItemsModal').on('shown.bs.modal', function () {
+    renderItemTables();
+});
+
+
+
 
 
 
@@ -399,5 +466,6 @@ $('#searchBtn3').on('click', searchItems);
     // Event listeners
     $('.add-button').on('click', addItemToOrder);
     $('.input-group input[type="number"]').on('input', calculateTotals);
+
 
 
