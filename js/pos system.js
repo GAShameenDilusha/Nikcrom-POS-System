@@ -319,9 +319,12 @@ function clearItemForm() {
 }
 
 // Function to render the item table
-function renderItemTable() {
-    const $tableBody = $('#itemTable tbody');
-    $tableBody.empty();
+function renderItemTables() {
+    const $itemTableBody = $('#itemTable tbody');
+    const $viewAllItemsTableBody = $('#viewAllItemsTableBody');
+
+    $itemTableBody.empty();
+    $viewAllItemsTableBody.empty();
 
     $.each(items, (index, item) => {
         const $row = $('<tr>');
@@ -335,9 +338,11 @@ function renderItemTable() {
             populateItemForm(item);
         });
 
-        $tableBody.append($row);
+        $itemTableBody.append($row.clone(true));
+        $viewAllItemsTableBody.append($row);
     });
 }
+
 
 // Function to populate the item form with data
 function populateItemForm(item) {
@@ -361,7 +366,7 @@ function searchItems() {
 // Function to render both item tables
 function renderItemTables(filteredData = items) {
     const $itemTableBody = $('#itemTable tbody');
-    const $viewAllItemsTableBody = $('#viewAllItemsTableBody tbody');
+    const $viewAllItemsTableBody = $('#viewAllItemsTableBody');
 
     $itemTableBody.empty();
     $viewAllItemsTableBody.empty();
@@ -399,6 +404,15 @@ $(document).ready(function () {
 $('#viewAllItemsModal').on('shown.bs.modal', function () {
     renderItemTables();
 });
+
+
+
+
+
+
+
+
+
 
 
 
