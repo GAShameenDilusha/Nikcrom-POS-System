@@ -70,7 +70,7 @@ body {
 
 .purchase{                        /*I*/
     position: relative;
-    top: 10px;
+    top: -30px;
 
 }
 
@@ -94,7 +94,61 @@ body {
 
 .view-history{                         /*I*/
     position: relative;
-    top: 15px;
+    top: -30px;
     left: 100px;
 }
 
+.Total{
+    position: relative;
+    top: -30px;
+    left: 100px;
+}
+
+.SubTotal{
+    position: relative;
+    top: -30px;
+    left: 100px;
+}
+
+
+.Sub{
+    position: relative;
+    top: -30px;
+}
+
+.Cash{
+    position: relative;
+    top: -40px;
+}
+
+.Cash-textfield{
+    position: relative;
+    top: -45px;
+}
+
+
+.Discount{
+    position: relative;
+    top: -40px;
+}
+
+.Discount-Textfield{
+    position: relative;
+    top: -45px;
+}
+
+.P-Discount{
+    position: relative;
+    top: -45px;
+}
+
+.Balance{
+    position: relative;
+    top: -45px;
+}
+
+.Balance-Textfield{
+    position: relative;
+    left: -80px;
+    width: 2px;
+}

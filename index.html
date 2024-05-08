@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
+
+
     <link rel="stylesheet" href="assets/style/home.css">
     <link rel="stylesheet" href="assets/style/customer.css">
     <link rel="stylesheet" href="assets/style/item.css">
     <link rel="stylesheet" href="assets/style/orders.css">
     <link rel="stylesheet" href="assets/style/Login.css">
     <link rel="stylesheet" href="assets/style/normalize.css">
+    <link rel="stylesheet" href="js/pos%20system.js">
     <link rel="stylesheet" href="assets/font%20awesome/fontawesome-free-6.5.1-web/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -840,7 +843,9 @@
                         <div class="form-group row">
                             <label for="orderId" class="col-sm-3 col-form-label">Order ID:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="orderId"  readonly>
+                                <input type="text" class="form-control" id="orderId" readonly>
+                                <span id="orderIdDisplay"></span>
+
                             </div>
                         </div>
                         <div class="form-group row">
@@ -850,9 +855,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="customer" class="col-sm-3 col-form-label">Customer:</label>
+                            <label for="customerDropdown" class="col-sm-3 col-form-label">Customer:</label>
                             <div class="col-sm-9">
-                                <select class="form-control" id="customer">
+                                <select class="form-control" id="customerDropdown">
                                     <option ></option>
                                 </select>
                             </div>
@@ -883,10 +888,12 @@
                     <div class="card-header bg-success text-white">Item Select</div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="item" class="col-sm-4 col-form-label">Item:</label>
+                            <label for="itemDropdown" class="col-sm-4 col-form-label">Item:</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="item">
-                                    <option ></option>
+                                <select class="form-control" id="itemDropdown">
+                                    <option >P001</option>
+                                    <option >P002</option>
+                                    <option >P003</option>
                                 </select>
                             </div>
                         </div>
@@ -922,7 +929,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 text-right">
-                                <button class="btn btn-danger add-button">Add Item</button>
+                                <!-- Add an ID to the button for easy access -->
+                                <button class="btn btn-danger add-button" id="addItemButton">Add Item</button>
                             </div>
                         </div>
                     </div>
@@ -995,24 +1003,32 @@
                     <div class="card-body">
                         <div class="d-flex flex-column justify-content-between align-items-start">
                             <div>
-                                <h4 class="Th3">Total :<label> Rs.1050.00</label></h4>
-                                <h4 class="Sh4">SubTotal :<label> Rs.945.00</label></h4>
+                                <h4 class="Th3">Total :<input type="text" class="form-control Total" id="itemCode-T" readonly></h4>
+                                <h4 class="Sh4 Sub">SubTotal :<input type="text" class="form-control SubTotal" id="itemCode-S" readonly></h4>
                             </div>
                             <div class="w-100">
                                 <div class="form-group mb-3">
-                                    <label for="itemName" class="form-label">Cash</label>
-                                    <input type="number" class="form-control" placeholder="Cash" value="5000">
+                                    <label for="itemName" class="form-label Cash">Cash</label>
+                                    <input type="number" class="form-control Cash-textfield" placeholder="Cash">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="itemName" class="form-label">Discount</label>
+                                    <label for="itemName" class="form-label Discount">Discount</label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control" placeholder="Discount" value="1">
+                                        <input type="number" class="form-control Discount-Textfield" placeholder="Discount">
                                         <div class="input-group-append">
-                                            <span class="input-group-text">%</span>
+                                            <span class="input-group-text P-Discount">%</span>
                                         </div>
                                     </div>
                                 </div>
-                                <h5 class="mt-2">Balance:<label>4055</label></h5>
+                                <div class="row mt-2 Balance">
+                                    <div class="col">
+                                        <h5>Balance:</h5>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm Balance-Textfield" id="itemCode-B" readonly>
+                                    </div>
+                                </div>
+
                                 <button class="btn btn-warning btn-lg btn-block purchase">Purchase</button>
                                 <button type="button" class="btn btn-primary btn-sm view-history" data-toggle="modal" data-target="#viewAllHistoryModal">
                                     View All History
@@ -1101,6 +1117,8 @@
 </section>
 
 
+
+
 <script src="assets/lib/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="js/pos%20system.js"></script>
@@ -1116,6 +1134,7 @@
 
 <script src="assets/lib/jquery.min.js"></script>
 <script src="assets/js/home.js"></script>
+<script src="js/pos%20system.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
@@ -1124,6 +1143,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-5Nza5C3bDF8hY5O2xNyTRl4BXFm2+z8CBg9nB30O30A=" crossorigin="anonymous"></script>
 
 
 </body>

@@ -110,8 +110,6 @@ $('#order_btn').on('click', () => {
 });
 
 
-
-
 //////////////////////////////////////////////Customer
 
 let customers = []; // Array to store customer data
@@ -242,7 +240,6 @@ function clearCustomerForm(modalId) {
 }                                                           /*end*/
 
 
-
 // Function to render customer tables with filtered data
 function renderCustomerTables(filteredData = customers) {
     const $customerTableBody = $('#customerTable tbody');
@@ -284,12 +281,6 @@ $(document).ready(function () {
 $('#viewAllCustomersModal').on('shown.bs.modal', function () {
     renderCustomerTables();
 });
-
-
-
-
-
-
 
 
 /////////////////////////////////////////////item
@@ -473,357 +464,202 @@ $('#viewAllItemsModal').on('shown.bs.modal', function () {
 
 
 
-
-
-
-
-/////////////////////////////////////////////////////Orders
-
-// Array to store order data
-let orders = [];
-
-// Populate customer dropdown
-const $customerDropdown = $('#customer');
-$customerDropdown.empty();
-$customerDropdown.append($('<option>').val('').text('Select a Customer'));
-customers.forEach((customer, index) => {
-    $customerDropdown.append($('<option>').val(index).text(`${customer.id} - ${customer.name}`));
+//////////////////////////////////////////////////////////////////////////////////////////////////// Orders
+/*////////Auto Generate Order id///////////*/
+// Use jQuery's document ready function
+$(document).ready(function() {
+    // Generate a unique order ID
+    var orderId = generateOrderId();
+    // Set the generated order ID to the input field
+    $('#orderId').val(orderId);
+    // Show the generated order ID in the span
+    $('#orderIdDisplay').text(orderId);
 });
 
-// Populate item dropdown
-const $itemDropdown = $('#item');
-$itemDropdown.empty();
-$itemDropdown.append($('<option>').val('').text('Select an Item'));
-items.forEach((item, index) => {
-    $itemDropdown.append($('<option>').val(index).text(`${item.id} - ${item.name}`));
-});
-
-// Function to add an item to the order
-function addItemToOrder() {
-    const customerIndex = $('#customer').val();
-    const selectedCustomer = customers[customerIndex];
-    const itemIndex = $('#item').val();
-    const selectedItem = items[itemIndex];
-    const orderQuantity = parseInt($('#orderQuantity').val());
-
-    if (!selectedCustomer || !selectedItem || isNaN(orderQuantity)) {
-        alert('Please select a customer, item, and enter a valid order quantity.');
-        return;
-    }
-
-    const newOrder = {
-        customer: selectedCustomer,
-        item: selectedItem,
-        orderQuantity: orderQuantity,
-        total: selectedItem.price * orderQuantity
-    };
-
-    orders.push(newOrder);
-    renderOrderTable();
-    calculateTotals();
-    clearOrderForm();
+// Function to generate an order ID
+function generateOrderId() {
+    // Generate a random 6-digit number
+    var randomNum = Math.floor(Math.random() * 900000) + 100000;
+    // Get the current date and time in milliseconds
+    var timestamp = new Date().getTime();
+    // Combine the random number with the timestamp to create a unique order ID
+    var orderId = 'ORD' + randomNum + timestamp;
+    return orderId;
 }
 
-// Function to render the order table
-function renderOrderTable() {
-    const $tableBody = $('#ordersTable tbody');
-    $tableBody.empty();
 
-    orders.forEach(order => {
-        const $row = $('<tr>');
-        $row.append($('<td>').text(order.customer.id));
-        $row.append($('<td>').text(order.customer.name));
-        $row.append($('<td>').text(order.item.id));
-        $row.append($('<td>').text(order.item.name));
-        $row.append($('<td>').text(order.item.price));
-        $row.append($('<td>').text(order.orderQuantity));
-        $row.append($('<td>').text(order.total.toFixed(2)));
 
-        $tableBody.append($row);
-    });
-}
 
-// Function to calculate totals
-function calculateTotals() {
-    let subTotal = 0;
-    let total = 0;
 
-    orders.forEach(order => {
-        subTotal += order.total;
+
+
+/*/////Customer drop down/////////*/
+// Function to populate the customer dropdown in the orders section
+function populateCustomerDropdown() {
+    const $dropdown = $('#customerDropdown');
+    $dropdown.empty();
+
+    customers.forEach(customer => {
+        $dropdown.append($('<option>').text(customer.id).val(customer.id));
     });
 
-    const discount = parseFloat($('.input-group input[type="number"]').val()) / 100;
-    total = subTotal - (subTotal * discount);
-
-    $('.Th3').text(`Total: Rs.${total.toFixed(2)}`);
-    $('.Sh4').text(`SubTotal: Rs.${subTotal.toFixed(2)}`);
+    // Trigger change event once dropdown is populated
+    $dropdown.trigger('change');
 }
 
-// Function to clear the order form
-function clearOrderForm() {
-    $('#customer').val('');
-    $('#item').val('');
-    $('#orderQuantity').val('');
-}
-
-// Event listeners
-$('.add-button').on('click', addItemToOrder);
-$('.input-group input[type="number"]').on('input', calculateTotals);
-
-// Function to render order history in the modal
-function renderOrderHistory() {
-    const $viewAllHistoryTableBody = $('#viewAllHistoryTableBody');
-    $viewAllHistoryTableBody.empty(); // Clear existing rows
-
-    orders.forEach(order => {
-        const $row = $('<tr>');
-        $row.append($('<td>').text(order.customer.id));
-        $row.append($('<td>').text(order.item.id));
-        $row.append($('<td>').text(order.item.name));
-        $row.append($('<td>').text(order.orderId)); // Assuming you have an orderId property in the order object
-        $row.append($('<td>').text(order.item.price));
-        $row.append($('<td>').text(order.orderQuantity));
-        $row.append($('<td>').text(order.date)); // Assuming you have a date property in the order object
-
-        $viewAllHistoryTableBody.append($row);
-    });
-}
-
-// Event listener for View All History modal
-$('#viewAllHistoryModal').on('shown.bs.modal', renderOrderHistory);
-
-
-  /*  let orders = []; // Array to store order data
-
-    // Function to add an item to the order
-    function addItemToOrder() {
-    const itemCode = $('#itemCode').val();
-    const itemName = $('#itemName4').val();
-    const price = parseFloat($('#price').val());
-    const orderQuantity = parseInt($('#orderQuantity').val());
-    const total = price * orderQuantity;
-
-    const newItem = {
-    itemCode,
-    itemName,
-    price,
-    orderQuantity,
-    total
-};
-
-    orders.push(newItem);
-    renderOrderTable();
-    calculateTotals();
-}
-
-    // Function to render the order table
-    function renderOrderTable() {
-    const $tableBody = $('#ordersTable tbody');
-    $tableBody.empty();
-
-    $.each(orders, (index, order) => {
-    const $row = $('<tr>');
-    $row.append($('<td>').text(order.itemCode));
-    $row.append($('<td>').text(order.itemName));
-    $row.append($('<td>').text(order.price.toFixed(2)));
-    $row.append($('<td>').text(order.orderQuantity));
-    $row.append($('<td>').text(order.total.toFixed(2)));
-
-    $tableBody.append($row);
-});
-}
-
-    // Function to calculate totals
-    function calculateTotals() {
-    let subTotal = 0;
-    let total = 0;
-
-    $.each(orders, (index, order) => {
-    subTotal += order.total;
-});
-
-    const discount = parseFloat($('.input-group input[type="number"]').val()) / 100;
-    total = subTotal - (subTotal * discount);
-
-    $('.Th3').text(`Total : Rs.${total.toFixed(2)}`);
-    $('.Sh4').text(`SubTotal : Rs.${subTotal.toFixed(2)}`);
-}
-
-    // Event listeners
-    $('.add-button').on('click', addItemToOrder);
-    $('.input-group input[type="number"]').on('input', calculateTotals);
-
-
-/!*
-let orders = []; // Array to store order data
-let selectedOrderIndex = -1; // Index of the selected order for update/delete operations
-
-// Function to save a new order
-function saveOrder() {
-    const orderId = $('#orderId').val();
-    const date = $('#date').val();
-    const customer = $('#customer').val();
-    const name = $('#name').val();
-    const address = $('#salary').val();
-    const contact = $('#address').val();
-    const item = $('#item').val();
-    const itemCode = $('#itemCode').val();
-    const itemName = $('#itemName4').val();
-    const price = $('#price').val();
-    const qtyOnH = $('#qtyOnH').val();
-    const orderQuantity = $('#orderQuantity').val();
-
-    const newOrder = {
-        orderId: orderId,
-        date: date,
-        customer: customer,
-        name: name,
-        address: address,
-        contact: contact,
-        item: item,
-        itemCode: itemCode,
-        itemName: itemName,
-        price: price,
-        qtyOnH: qtyOnH,
-        orderQuantity: orderQuantity
-    };
-
-    orders.push(newOrder);
-    clearOrderForm();
-    renderOrderTable();
-}
-
-// Function to delete an order
-function deleteOrder() {
-    orders.splice(selectedOrderIndex, 1);
-    clearOrderForm();
-    renderOrderTable();
-}
-
-// Function to clear the order form
-function clearOrderForm() {
-    $('#orderId').val('');
-    $('#date').val('');
-    $('#customer').val('');
-    $('#name').val('');
-    $('#salary').val('');
-    $('#address').val('');
-    $('#item').val('');
-    $('#itemCode').val('');
-    $('#itemName4').val('');
-    $('#price').val('');
-    $('#qtyOnH').val('');
-    $('#orderQuantity').val('');
-    selectedOrderIndex = -1;
-}
-
-// Function to render the order table
-function renderOrderTable() {
-    const $orderTableBody = $('#ordersTable tbody');
-    $orderTableBody.empty();
-
-    orders.forEach(order => {
-        const row = `
-            <tr>
-                <td>${order.itemCode}</td>
-                <td>${order.itemName}</td>
-                <td>${order.price}</td>
-                <td>${order.orderQuantity}</td>
-                <td>${order.price * order.orderQuantity}</td>
-            </tr>
-        `;
-        $orderTableBody.append(row);
-    });
-}
-
-// Event listeners
-$('.add-button').on('click', saveOrder);
-$('.delete-button').on('click', deleteOrder);
-
-// Initialize
+// Call the function to populate the dropdown on document ready
 $(document).ready(function () {
-    renderOrderTable();
+    populateCustomerDropdown();
 });
-*!/
 
-///////////////////////////////////////////////////////////////////////////
 
-/!*
-function saveOrder() {
-    const orderId = $('#orderId').val();
-    const date = $('#date').val();
-    const customerIndex = $('#customer').val();
-    const selectedCustomer = customers[customerIndex];
-    const name = selectedCustomer ? selectedCustomer.name : '';
-    const address = selectedCustomer ? selectedCustomer.address : '';
-    const contact = selectedCustomer ? selectedCustomer.salary : '';
-    const itemIndex = $('#item').val();
-    const selectedItem = items[itemIndex];
-    const itemCode = selectedItem ? selectedItem.id : '';
-    const itemName = selectedItem ? selectedItem.name : '';
-    const price = selectedItem ? selectedItem.price : '';
-    const qtyOnH = selectedItem ? selectedItem.quantity : '';
-    const orderQuantity = $('#orderQuantity').val();
+// Event listener for customer dropdown change
+$('#customerDropdown').on('change', function () {
+    const selectedCustomerId = $(this).val();
+    const selectedCustomer = customers.find(customer => customer.id === selectedCustomerId);
 
-    const newOrder = {
-        orderId: orderId,
-        date: date,
-        customer: selectedCustomer,
-        name: name,
-        address: address,
-        contact: contact,
-        item: selectedItem,
-        itemCode: itemCode,
-        itemName: itemName,
-        price: price,
-        qtyOnH: qtyOnH,
-        orderQuantity: orderQuantity
-    };
+    // Populate customer details in the orders section
+    if (selectedCustomer) {
+        $('#name').val(selectedCustomer.name);
+        $('#address').val(selectedCustomer.address);
+        $('#contact').val(selectedCustomer.contact);
+    } else {
+        // Clear customer details if no customer is selected
+        $('#name').val('');
+        $('#address').val('');
+        $('#contact').val('');
+    }
+});
 
-    orders.push(newOrder);
-    clearOrderForm();
-    renderOrderTable();
+
+
+
+
+
+
+
+
+/*////////Item drop down///////////////*/
+// Function to populate the item dropdown in the orders section
+function populateItemDropdown() {
+    const $dropdown = $('#itemDropdown');
+    $dropdown.empty();
+
+    items.forEach(item => {
+        $dropdown.append($('<option>').text(item.id).val(item.id));
+    });
+
+    // Trigger change event once dropdown is populated
+    $dropdown.trigger('change');
+}
+
+// Call the function to populate the dropdown on document ready
+$(document).ready(function () {
+    populateItemDropdown();
+});
+
+
+// Event listener for item dropdown change
+$('#itemDropdown').on('change', function () {
+    const selectedItemId = $(this).val();
+    const selectedItem = items.find(item => item.id === selectedItemId);
+
+    // Populate item details in the orders section
+    if (selectedItem) {
+        $('#itemName').val(selectedItem.name);
+        $('#price').val(selectedItem.price);
+        $('#qtyOnHand').val(selectedItem.qtyOnHand);
+    } else {
+        // Clear item details if no item is selected
+        $('#itemName').val('');
+        $('#price').val('');
+        $('#qtyOnHand').val('');
+    }
+});
+
+
+
+
+
+
+
+/*///////////when i click the add item button after this item put the table//////////*/
+// Function to add the selected item to the table in the orders section
+function addItemToTable() {
+    const itemCode = $('#itemDropdown').val();
+    const itemName = $('#itemName').val();
+    const price = $('#price').val();
+    const quantity = $('#orderQuantity').val();
+    const total = price * quantity;
+
+    // Create a new row for the table
+    const $row = $('<tr>');
+    $row.append($('<td>').text(itemCode));
+    $row.append($('<td>').text(itemName));
+    $row.append($('<td>').text(price));
+    $row.append($('<td>').text(quantity));
+    $row.append($('<td>').text(total));
+
+    // Append the row to the table body
+    $('#ordersTable tbody').append($row);
+}
+
+// Event listener for the "Add Item" button
+$('#addItemButton').on('click', function() {
+    addItemToTable();
+    calculateTotal();
+    calculateSubtotal();
+});
+
+
+// Clear input fields after adding item
+$('#itemName').val('');
+$('#price').val('');
+$('#qtyOnHand').val('');
+$('#orderQuantity').val('');
+
+
+
+
+
+
+
+
+/*////////Total logics/////////*/
+function calculateTotal() {
+    let total = 0;
+    $('#ordersTable tbody tr').each(function() {
+        const price = parseFloat($(this).find('td:nth-child(3)').text());
+        const quantity = parseInt($(this).find('td:nth-child(4)').text());
+        total += price * quantity;
+    });
+    $('#itemCode-T').val(total.toFixed(2));
+}
+
+function calculateSubtotal() {
+    let subtotal = 0;
+    $('#ordersTable tbody tr').each(function() {
+        const price = parseFloat($(this).find('td:nth-child(3)').text());
+        const quantity = parseInt($(this).find('td:nth-child(4)').text());
+        subtotal += price * quantity;
+    });
+    $('#itemCode-S').val(subtotal.toFixed(2));
 }
 
 
-// Populate customer dropdown
-const $customerDropdown = $('#customer');
-$customerDropdown.empty();
-$customerDropdown.append($('<option>').val('').text('Select a Customer'));
-customers.forEach((customer, index) => {
-    $customerDropdown.append($('<option>').val(index).text(`${customer.id} - ${customer.name}`));
+function calculateBalance() {
+    const total = parseFloat($('#itemCode-T').val());
+    const cash = parseFloat($('.Cash-textfield').val());
+    const discount = parseFloat($('.Discount-Textfield').val());
+    const balance = total - cash - (total * (discount / 100));
+    $('.Balance-Textfield').val(balance.toFixed(2));
+}
+
+
+$('.purchase').on('click', function() {
+    calculateBalance();
+    // You can perform additional actions here, such as saving the order
 });
 
-// Populate item dropdown
-const $itemDropdown = $('#item');
-$itemDropdown.empty();
-$itemDropdown.append($('<option>').val('').text('Select an Item'));
-items.forEach((item, index) => {
-    $itemDropdown.append($('<option>').val(index).text(`${item.id} - ${item.name}`));
-});
 
-
-
-function renderOrderTable() {
-    const $orderTableBody = $('#ordersTable tbody');
-    $orderTableBody.empty();
-
-    orders.forEach(order => {
-        const row = `
-            <tr>
-                <td>${order.customer.id}</td>
-                <td>${order.itemCode}</td>
-                <td>${order.itemName}</td>
-                <td>${order.orderId}</td>
-                <td>${order.price}</td>
-                <td>${order.orderQuantity}</td>
-                <td>${order.date}</td>
-            </tr>
-        `;
-        $orderTableBody.append(row);
-    });
-}*!/
-
-
-
-*/
+$('.Cash-textfield, .Discount-Textfield').on('input', calculateBalance);
